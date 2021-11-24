@@ -3,5 +3,8 @@ class Main():
         self.version = kwargs["version"]
         self.auto = kwargs["auto"]
         self.custom = kwargs["custom"]
-        print(kwargs)
-        
+        self.name = kwargs["name"]
+        self.path = kwargs["path"]
+        self.framework = kwargs["framework"]
+
+    # TODO: complete class

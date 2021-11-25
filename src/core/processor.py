@@ -62,8 +62,8 @@ class Main:
 
     def processor(self) -> None:
         if self.auto:
-            auto(self.name, self.apps, self.framework, self.path)
+            auto(self._name, self._apps, self.framework, self.path)
         elif self.custom:
-            custom(self.name, self.apps, self.framework, self.path)
+            custom(self._name, self._apps, self.framework, self.path)
         elif self.version:
             print(f"Django Smithing Tools Version: {__version__}")

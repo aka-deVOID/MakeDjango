@@ -26,19 +26,31 @@ class Main:
         return f"{__class__}"
     
     @property
+    def name(self) -> str:
+        self._name
+
+    @property
     def path(self) -> str:
         return self._path
-    
+            
+    @property
+    def apps(self) -> str:
+        return self._apps
+
     @path.setter
     def path(self, path_addr: str) -> None:
         if os.path.isdir(path_addr):
             self._path = path_addr
         else:
             self.parser.error("The entered path is invalid")
-
-    @property
-    def apps(self):
-        return self._apps
+    
+    @name.setter
+    def name(self, project_name: str) -> None:
+        regex = re.compile(r'([A-Za-z0-9\_])*')
+        if not re.fullmatch(regex, project_name):
+            self.parser.error("Invalid project name")
+        else:
+            self._name = project_name
 
     @apps.setter
     def apps(self, app_names: list) -> None:

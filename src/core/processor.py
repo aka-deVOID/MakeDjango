@@ -1,10 +1,16 @@
 from .auto_make import auto
 from .custom_make import custom
+import argparse
+import os
+import sys
+import pathlib
+import re
 
 __version__: str = "0.0.0"
 
 class Main:
-    def __init__(self, **kwargs) -> None:
+    def __init__(self, parser, **kwargs) -> None:
+        self.parser: isinstance(argparse) = parser
         self.version: str = kwargs["version"]
         self.auto: bool = kwargs["auto"]; self.custom: bool = kwargs["custom"]
         self.name: str = kwargs["name"]
@@ -18,6 +24,27 @@ class Main:
 
     def __repr__(self) -> str:
         return f"{__class__}"
+    
+    @property
+    def path(self) -> str:
+        return self._path
+    
+    @path.setter
+    def path(self, path_addr: str) -> None:
+        if os.path.isdir(path_addr):
+            self._path = path_addr
+        else:
+            self.parser.error("The entered path is invalid")
+
+    @property
+    def apps(self):
+        return self._apps
+
+    @apps.setter
+    def apps(self, app_names: list) -> None:
+        for item in app_names:
+            if re.search(r'[^A-Za-z0-9_\-\\]', item):
+                print("True")
 
     def processor(self) -> None:
         if self.auto:

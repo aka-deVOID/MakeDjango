@@ -1,12 +1,8 @@
+import os
+import re
+import argparse
 from .auto_make import auto
 from .custom_make import custom
-import argparse
-import os
-import sys
-import pathlib
-import re
-
-__version__: str = "0.0.0"
 
 class Main:
     def __init__(self, parser, **kwargs) -> None:
@@ -66,6 +62,4 @@ class Main:
                 print("\33[32m==> Done... \U00002705")
         elif self.custom:
             if custom(self._name, self._apps, self.framework, self.path):
-                print("\33[32m==> Done... \U00002705")          
-        elif self.version:
-            print(f"Django Smithing Tools Version: {__version__}")
+                print("\33[32m==> Done... \U00002705")

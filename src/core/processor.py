@@ -42,9 +42,11 @@ class Main:
 
     @apps.setter
     def apps(self, app_names: list) -> None:
+        regex = re.compile(r'([A-Za-z0-9\_])*')
         for item in app_names:
-            if re.search(r'[^A-Za-z0-9_\-\\]', item):
-                print("True")
+            if not re.fullmatch(regex, item):
+                self.parser.error(f"Invalid Name: {item}")
+        self._apps = app_names
 
     def processor(self) -> None:
         if self.auto:

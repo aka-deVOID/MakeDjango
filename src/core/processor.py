@@ -62,8 +62,10 @@ class Main:
 
     def processor(self) -> None:
         if self.auto:
-            auto(self._name, self._apps, self.framework, self.path)
+            if auto(self._name, self._apps, self.framework, self.path):
+                print("\33[32m==> Done... \U00002705")
         elif self.custom:
-            custom(self._name, self._apps, self.framework, self.path)
+            if custom(self._name, self._apps, self.framework, self.path):
+                print("\33[32m==> Done... \U00002705")          
         elif self.version:
             print(f"Django Smithing Tools Version: {__version__}")

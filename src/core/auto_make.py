@@ -3,6 +3,7 @@ from pathlib import Path
 from os import mkdir
 from os.path import join
 from shutil import copyfile
+from typing import Text
 
 Base: str = Path(__file__).resolve().parent.parent
 
@@ -31,12 +32,13 @@ class {app_name.capitalize()}Config(AppConfig):
     name = '{app_name}'
 
     """
-    apps_file = open(join(app_dir, "apps.py"), 'w'); apps_file.write(code)
+    apps_file = open(join(app_dir, "apps.py"), 'w'); apps_file.write(code); apps_file.close()
 
-def rest(apps: list) -> None:
+def rest(apps: list) -> bool:
     ...
+    return True
 
-def django(apps: list, main_dir: str) -> None:
+def django(apps: list, main_dir: str) -> bool:
     for app in apps:
         if app in ("user", "account", "accounts"):
             ...
@@ -50,13 +52,13 @@ def django(apps: list, main_dir: str) -> None:
             copyfile(Base / django_file, join(app_dir, django_file[9:]))
 
         print(f"\33[32m==> {app.capitalize()} Craeted... \U00002705")
+    return True
 
-    print("\33[32m==> Done... \U00002705")
-
-def graphql(apps: list) -> None:
+def graphql(apps: list) -> bool:
     ...
+    return True
 
-def auto(project_name: str, apps: list, framework: str, path: str) -> None:
+def auto(project_name: str, apps: list, framework: str, path: str) -> bool:
     main_dir: str = join(path, project_name)
     setup_dir: str = join(main_dir, project_name)
 
@@ -72,9 +74,9 @@ def auto(project_name: str, apps: list, framework: str, path: str) -> None:
 
     print("\33[32m==> Project Created... \U00002705")
 
-    if framework == "rest":
-        rest(apps)
-    elif framework == "django":
-        django(apps, main_dir)
-    elif framework == "graphql":
-        graphql(apps)
+    if framework == "rest" and rest(apps):
+        return True
+    elif framework == "django" and django(apps, main_dir):
+        return True
+    elif framework == "graphql" and graphql(apps):
+        return True

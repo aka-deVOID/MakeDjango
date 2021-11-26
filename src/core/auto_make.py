@@ -3,7 +3,6 @@ from pathlib import Path
 from os import mkdir
 from os.path import join
 from shutil import copyfile
-from typing import Text
 
 Base: str = Path(__file__).resolve().parent.parent
 
@@ -18,10 +17,16 @@ Setup_Files: tuple = (
 Django_Files: tuple = (
     "template/__init__.py",
     "template/admin.py",
-    #"template/forms.py",
+    "template/forms.py",
     "template/models.py",
     "template/tests.py",
     "template/views.py"
+)
+
+User_Files: tuple = (
+    "template/authentications.py",
+    "template/middlewares.py",
+    "template/managers.py",
 )
 
 def create_apps(app_dir: str, app_name: str) -> None:

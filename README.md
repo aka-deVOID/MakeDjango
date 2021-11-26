@@ -1,4 +1,4 @@
-https://img.shields.io/appveyor/build/MahanBi/MakeDjango?color=yellow&logo=on%20development&logoColor=red&style=plastic
+<img alt="AppVeyor" src="https://img.shields.io/appveyor/build/MahanBi/MakeDjango?color=red&logo=on%20development&style=plastic">
 
 # MakeDjango
  

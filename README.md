@@ -1,3 +1,2 @@
 # MakeDjango
-https://badgen.net/github/license/micromatch/micromatch
-MakeDjango: simple command line tool for start project
+AppVeyor badge	/appveyor/build/:user/:repo MakeDjango: simple command line tool for start project

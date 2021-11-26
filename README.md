@@ -1,2 +1,5 @@
+https://img.shields.io/appveyor/build/MahanBi/MakeDjango?color=yellow&logo=on%20development&logoColor=red&style=plastic
+
 # MakeDjango
-AppVeyor badge	/appveyor/build/:user/:repo MakeDjango: simple command line tool for start project
+ 
+MakeDjango: simple command line tool for start project

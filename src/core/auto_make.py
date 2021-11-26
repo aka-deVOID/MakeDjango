@@ -24,6 +24,12 @@ Django_Files: tuple = (
 )
 
 User_Files: tuple = (
+    "template/__init__.py",
+    "template/admin.py",
+    "template/forms.py",
+    "template/models.py",
+    "template/tests.py",
+    "template/views.py",
     "template/authentications.py",
     "template/middlewares.py",
     "template/managers.py",
@@ -45,16 +51,18 @@ def rest(apps: list) -> bool:
 
 def django(apps: list, main_dir: str) -> bool:
     for app in apps:
-        if app in ("user", "account", "accounts"):
-            ...
-            continue
-
         app_dir = join(main_dir, app); mkdir(app_dir)
         migrations_dir = join(app_dir, "migrations"); mkdir(migrations_dir); copyfile(Base / "template/__init__.py", join(migrations_dir, "__init__.py"))
         
+        if app in ("user", "account", "accounts"):
+            for django_file in Django_Files:
+                create_apps(app_dir, app)
+                copyfile(Base / django_file, join(app_dir, django_file[9:]))
+            continue
+
         for django_file in Django_Files:
             create_apps(app_dir, app)
-            copyfile(Base / django_file, join(app_dir, django_file[9:]))
+            copyfile(Base / User_Files, join(app_dir, User_Files[9:]))
 
         print(f"\33[32m==> {app.capitalize()} Craeted... \U00002705")
     return True

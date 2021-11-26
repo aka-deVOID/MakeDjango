@@ -2,9 +2,8 @@
 import argparse
 import os
 
-from core.processor import Main
+from core.processor import Main, Other
 
-__version__: str = "0.0.0"
 
 def main() -> None:
     parser = argparse.ArgumentParser(
@@ -29,10 +28,10 @@ def main() -> None:
 
     args = parser.parse_args()
 
-    if not vars(args)["version"]:
+    if vars(args)["auto"] == False and vars(args)["custom"] == False :
         Main(parser, **vars(args))
     else:
-        print(f"MakeDjango Version: {__version__}")
+        Other(**vars(args))
 
 if __name__ == "__main__":
     main()

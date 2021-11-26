@@ -4,7 +4,11 @@ import argparse
 from .auto_make import auto
 from .custom_make import custom
 
+__version__: str = "0.0.1"
+
 class Main:
+    """Validates argparse values. It then calls the required function based on the flag (-a | -c)."""
+
     def __init__(self, parser, **kwargs) -> None:
         self.parser: isinstance(argparse) = parser
         self.version: str = kwargs["version"]
@@ -64,8 +68,10 @@ class Main:
             if custom(self._name, self._apps, self.framework, self.path):
                 print("\33[32m==> Done... \U00002705")
 
-class OtherCMD:
-    def __init__(self, version=False) -> None:
-        self.version = version
+class Other:
+    """Processes other commands"""
+
+    def __init__(self, version: bool) -> None:
+        self.version: bool = version
         
 

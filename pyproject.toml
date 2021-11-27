@@ -1,6 +1,6 @@
 [build-system]
 requires = [
-    "asgiref==3.4.1",
-    "pytz==2021.3",
+    "setuptools>=42",
+    "wheel"
 ]
 build-backend = "setuptools.build_meta"

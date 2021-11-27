@@ -1,0 +1,1 @@
+from MakeDjango import main

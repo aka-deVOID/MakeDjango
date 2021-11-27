@@ -1,8 +1,8 @@
-#!/usr/bin/env python
+#!/usr/local/bin/python
 import argparse
 import os
 
-from core.processor import Main, Other
+from .core.processor import Main, Other
 
 
 def main() -> None:

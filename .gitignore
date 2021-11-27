@@ -245,4 +245,5 @@ pip-selfcheck.json
 # Support for Project snippet scope
 !.vscode/*.code-snippets
 main
+.pypirc
 # End of https://www.toptal.com/developers/gitignore/api/venv,django,python,visualstudiocode

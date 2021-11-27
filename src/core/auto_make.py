@@ -20,7 +20,8 @@ Django_Files: tuple = (
     "template/forms.py",
     "template/models.py",
     "template/tests.py",
-    "template/views.py"
+    "template/urls.py",
+    "template/views.py",
 )
 
 User_Files: tuple = (
@@ -28,11 +29,24 @@ User_Files: tuple = (
     "template/admin.py",
     "template/forms.py",
     "template/models.py",
+    "template/permissions.py",
     "template/tests.py",
     "template/views.py",
     "template/authentications.py",
     "template/middlewares.py",
     "template/managers.py",
+)
+
+Rest_Files: tuple = (
+    "template/__init__.py",
+    "template/admin.py",
+    "template/models.py",
+    "template/urls.py",
+    "template/tests.py",
+    "template/views.py",
+    "template/throttles.py",
+    "template/serializers.py",
+
 )
 
 def create_apps(app_dir: str, app_name: str) -> None:
@@ -47,10 +61,25 @@ class {app_name.capitalize()}Config(AppConfig):
     """
     apps_file = open(join(app_dir, "apps.py"), 'w'); apps_file.write(code); apps_file.close()
 
-def rest(apps: list) -> bool:
+def rest(apps: list, main_dir: str) -> bool:
     """Creating App Files For Rest mode"""
-
-    ...
+    for app in apps:
+        app_dir = join(main_dir, app); mkdir(app_dir)
+        migrations_dir = join(app_dir, "migrations"); mkdir(migrations_dir); copyfile(Base / "template/__init__.py", join(migrations_dir, "__init__.py"))
+    
+        if app in ("user", "account", "accounts"):
+            create_apps(app_dir, app)
+            for user_file in User_Files:
+                copyfile(Base / user_file, join(app_dir, user_file[9:]))
+            
+            print(f"\33[32m==> {app.capitalize()} Craeted... \U00002705")
+            continue
+        
+        create_apps(app_dir, app)
+        for rest_file in Rest_Files:
+            copyfile(Base / rest_file, join(app_dir, rest_file[9:]))
+    
+        print(f"\33[32m==> {app.capitalize()} Craeted... \U00002705")
     return True
 
 def django(apps: list, main_dir: str) -> bool:
@@ -59,7 +88,7 @@ def django(apps: list, main_dir: str) -> bool:
     for app in apps:
         app_dir = join(main_dir, app); mkdir(app_dir)
         migrations_dir = join(app_dir, "migrations"); mkdir(migrations_dir); copyfile(Base / "template/__init__.py", join(migrations_dir, "__init__.py"))
-        
+
         if app in ("user", "account", "accounts"):
             create_apps(app_dir, app)
             for user_file in User_Files:
@@ -70,14 +99,14 @@ def django(apps: list, main_dir: str) -> bool:
 
         create_apps(app_dir, app)
         for django_file in Django_Files:
-            create_apps(app_dir, app)
             copyfile(Base / django_file, join(app_dir, django_file[9:]))
 
         print(f"\33[32m==> {app.capitalize()} Craeted... \U00002705")
     return True
 
-def graphql(apps: list) -> bool:
+def graphql(apps: list, main_dir: str) -> bool:
     """Creating App Files For GraphQL mode"""
+    # TODO: graphql
     ...
     return True
 
@@ -101,9 +130,9 @@ def auto(project_name: str, apps: list, framework: str, path: str) -> bool:
 
     print("\33[32m==> Project Created... \U00002705")
 
-    if framework == "rest" and rest(apps):
+    if framework == "rest" and rest(apps, main_dir):
         return True
     elif framework == "django" and django(apps, main_dir):
         return True
-    elif framework == "graphql" and graphql(apps):
+    elif framework == "graphql" and graphql(apps, main_dir):
         return True

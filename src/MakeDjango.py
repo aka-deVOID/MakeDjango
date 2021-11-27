@@ -28,7 +28,7 @@ def main() -> None:
 
     args = parser.parse_args()
 
-    if vars(args)["auto"] == False and vars(args)["custom"] == False :
+    if vars(args)["auto"] == True or vars(args)["custom"] == True :
         Main(parser, **vars(args))
     else:
         Other(**vars(args))

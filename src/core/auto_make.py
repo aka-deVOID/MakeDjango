@@ -84,7 +84,7 @@ def rest(apps: list, main_dir: str) -> bool:
 
 def django(apps: list, main_dir: str) -> bool:
     """Creating App Files For Django(Jinja2) mode"""
-
+    mkdir(join(main_dir, "templates")); mkdir(join(main_dir, "static"))
     for app in apps:
         app_dir = join(main_dir, app); mkdir(app_dir)
         migrations_dir = join(app_dir, "migrations"); mkdir(migrations_dir); copyfile(Base / "template/__init__.py", join(migrations_dir, "__init__.py"))
@@ -97,6 +97,7 @@ def django(apps: list, main_dir: str) -> bool:
             print(f"\33[32m==> {app.capitalize()} Craeted... \U00002705")
             continue
 
+        mkdir(join(app_dir, f"templates")); mkdir(join(app_dir + "/templates", app))
         create_apps(app_dir, app)
         for django_file in Django_Files:
             copyfile(Base / django_file, join(app_dir, django_file[9:]))

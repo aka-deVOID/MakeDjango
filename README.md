@@ -40,7 +40,9 @@ MakeDjango --help
 
 To create a project automatically:
 name: project name
+
 mode: rest or django(jinja) or graphpl
+
 appnames: exam-> app1 app2
 
 ``` bash

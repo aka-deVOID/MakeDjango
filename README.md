@@ -13,12 +13,14 @@
 ## What is MakeDjango?
 
 A command line tool to speed up project construction ...
+
 Its main purpose is to create the right template for each project mode.
+
 (Create the folders and files needed for the project.)
 
 ### Installation
 
-To install MakeDjango, use pip:
+##### To install MakeDjango, use pip:
 
 ``` bash
 pip install MakeDjango
@@ -30,15 +32,16 @@ Or to install from source:
 python setup.py install
 ```
 
-#### Usage
+### Usage
 
-To display all commands:
+##### To display all commands:
 
 ``` bash
 MakeDjango --help
 ```
 
-To create a project automatically:
+##### To create a project automatically:
+
 name: project name
 
 mode: rest or django(jinja) or graphpl
@@ -49,6 +52,6 @@ appnames: exam-> app1 app2
 MakeDjango -a name mode apnames...
 ```
 
-##### License
+### License
 
 MIT. See [LICENSE](https://github.com/MahanBi/MakeDjango/blob/master/LICENSE) for more details.

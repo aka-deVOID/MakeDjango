@@ -46,7 +46,16 @@ Rest_Files: tuple = (
     "template/views.py",
     "template/throttles.py",
     "template/serializers.py",
+)
 
+Graqhql_Files: tuple = (
+    "template/__init__.py",
+    "template/admin.py",
+    "template/models.py",
+    "template/schema.py",
+    "template/tests.py",
+    "template/urls.py",
+    "template/views.py", 
 )
 
 def create_apps(app_dir: str, app_name: str) -> None:
@@ -84,7 +93,6 @@ def rest(apps: list, main_dir: str) -> bool:
 
 def django(apps: list, main_dir: str) -> bool:
     """Creating App Files For Django(Jinja2) mode"""
-    mkdir(join(main_dir, "templates")); mkdir(join(main_dir, "static"))
     for app in apps:
         app_dir = join(main_dir, app); mkdir(app_dir)
         migrations_dir = join(app_dir, "migrations"); mkdir(migrations_dir); copyfile(Base / "template/__init__.py", join(migrations_dir, "__init__.py"))
@@ -107,8 +115,23 @@ def django(apps: list, main_dir: str) -> bool:
 
 def graphql(apps: list, main_dir: str) -> bool:
     """Creating App Files For GraphQL mode"""
-    # TODO: graphql
-    ...
+    for app in apps:
+        app_dir = join(main_dir, app); mkdir(app_dir)
+        migrations_dir = join(app_dir, "migrations"); mkdir(migrations_dir); copyfile(Base / "template/__init__.py", join(migrations_dir, "__init__.py"))
+    
+        if app in ("user", "account", "accounts"):
+            create_apps(app_dir, app)
+            for user_file in User_Files:
+                copyfile(Base / user_file, join(app_dir, user_file[9:]))
+            
+            print(f"\33[32m==> {app.capitalize()} Craeted... \U00002705")
+            continue
+        
+        create_apps(app_dir, app)
+        for graphql_file in Graqhql_Files:
+            copyfile(Base / graphql_file, join(app_dir, graphql_file[9:]))
+    
+        print(f"\33[32m==> {app.capitalize()} Craeted... \U00002705")
     return True
 
 def auto(project_name: str, apps: list, framework: str, path: str) -> bool:

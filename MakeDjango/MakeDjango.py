@@ -2,8 +2,7 @@
 import argparse
 import os
 
-from core.processor import Main
-
+from .core.processor import Main
 
 def main() -> None:
     parser = argparse.ArgumentParser(

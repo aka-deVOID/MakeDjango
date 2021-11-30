@@ -8,12 +8,15 @@ setup(
     name="MakeDjango",
     long_description=long_description,
     long_description_content_type='text/markdown',
-    version="1.0.2",
+    version="1.0.3",
     install_requires=[
         "setuptools",
         "wheel",
         "asgiref==3.4.1",
         "pytz==2021.3",
+        "prompt-toolkit==1.0.14",
+        "pyfiglet==0.8.post1",
+        "PyInquirer==1.0.3"
     ],
     packages=["MakeDjango"],
     package_data={'MakeDjango': ["core/*.py", "template/*.py"]},

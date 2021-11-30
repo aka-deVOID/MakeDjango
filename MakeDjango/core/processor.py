@@ -4,7 +4,7 @@ import argparse
 from .auto_make import auto
 from .custom_make import custom
 
-__version__: str = "0.0.1"
+__version__: str = "1.0.3"
 
 class Main:
     """Validates argparse values. It then calls the required function based on the flag (-a | -c)."""

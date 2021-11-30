@@ -1,11 +1,10 @@
 import os
+import sys
 from pyfiglet import Figlet
-from PyInquirer import prompt, Separator
 from PyInquirer import style_from_dict, Token, prompt, Separator
 from os import mkdir
 from os.path import join
 from shutil import copyfile
-import sys
 from .auto_make import create_apps, Base, Setup_Files
 
 style = style_from_dict({
@@ -39,6 +38,7 @@ def selected_app_files() -> dict:
             'name': 'apps',
             'choices': [
                 Separator('=> All Apps <='),
+                {'name': '__init__.py', 'checked': True},
                 {'name': 'admin.py'}, {'name': 'forms.py'},
                 {'name': 'tests.py'}, {'name': 'urls.py'},
                 {'name': 'views.py'}, {'name': 'throttles.py'},
@@ -53,6 +53,7 @@ def selected_app_files() -> dict:
             'name': 'user',
             'choices': [
                 Separator('=> User App <='),
+                {'name': '__init__.py', 'checked': True},
                 {'name': 'forms.py'}, {'name': 'models.py'},
                 {'name': 'permissions.py'}, {'name': 'tests.py'},
                 {'name': 'views.py'}, {'name': 'authentications.py'},

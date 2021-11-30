@@ -67,11 +67,3 @@ class Main:
         elif self.custom:
             if custom(self._name, self._apps, self.framework, self.path):
                 print("\33[32m==> Done... \U00002705")
-
-class Other:
-    """Processes other commands"""
-
-    def __init__(self, version: bool) -> None:
-        self.version: bool = version
-        
-

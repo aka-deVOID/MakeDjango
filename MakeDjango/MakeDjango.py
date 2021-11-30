@@ -2,7 +2,7 @@
 import argparse
 import os
 
-from .core.processor import Main, Other
+from core.processor import Main
 
 
 def main() -> None:
@@ -13,13 +13,13 @@ def main() -> None:
     )
     
     # optional arguments:
-    parser.add_argument("-v", "--version", action="store_true", help="dst version")
+    parser.add_argument("-v", "--version", action="store_true", help="package version")
     # positional arguments:
     parser.add_argument("name", nargs="?", help="project name")
     parser.add_argument("framework", nargs="?", choices=("rest", "graphql", "django"), help="select your framework")
     parser.add_argument("appnames", nargs="*", help="app names create apps")
     # modes:
-    modes = parser.add_mutually_exclusive_group(required=False)
+    modes = parser.add_mutually_exclusive_group(required=True)
     modes.add_argument("-a", "--auto", action="store_true", help="Auto Template")
     modes.add_argument("-c", "--custom", action="store_true", help="Custom Template")
     # other:
@@ -28,10 +28,10 @@ def main() -> None:
 
     args = parser.parse_args()
 
-    if vars(args)["auto"] == True or vars(args)["custom"] == True :
-        Main(parser, **vars(args))
-    else:
-        Other(**vars(args))
+    #if vars(args)["auto"] is True or vars(args)["custom"] is True:
+    Main(parser, **vars(args))
+    #else:
+        #Other(**vars(args))
 
 if __name__ == "__main__":
     main()

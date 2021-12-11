@@ -28,9 +28,12 @@ def main() -> None:
     args = parser.parse_args()
 
     if vars(args)["version"] == True:
-        print("1.0.4")
+        print("1.0.5")
     else:
         Main(parser, **vars(args))
 
 if __name__ == "__main__":
     main()
+
+# TODO: add Dockerize command
+# TODO: add auto .venv maker and install default package

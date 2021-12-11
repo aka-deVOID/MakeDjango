@@ -40,10 +40,11 @@ def selected_app_files() -> dict:
                 Separator('=> All Apps <='),
                 {'name': '__init__.py', 'checked': True},
                 {'name': 'admin.py'}, {'name': 'forms.py'},
+                {'name': 'utils.py'}, {'name': 'signals.py'},
                 {'name': 'tests.py'}, {'name': 'urls.py'},
                 {'name': 'views.py'}, {'name': 'throttles.py'},
                 {'name': 'serializers.py'}, {'name': 'schema.py'},
-                {'name': 'models.py'},
+                {'name': 'models.py'}, {'name': 'querysets.py'},
             ],
             'validate': lambda answer: 'You probably forgot something ...' if len(answer) == 0 else True
         },
@@ -55,11 +56,12 @@ def selected_app_files() -> dict:
                 Separator('=> User App <='),
                 {'name': '__init__.py', 'checked': True},
                 {'name': 'forms.py'}, {'name': 'models.py'},
+                {'name': 'utils.py'}, {'name': 'signals.py'},
                 {'name': 'permissions.py'}, {'name': 'tests.py'},
                 {'name': 'views.py'}, {'name': 'authentications.py'},
                 {'name': 'middlewares.py'}, {'name': 'schema.py'},
                 {'name': 'throttles.py'}, {'name': 'serializers.py'},
-                {'name': 'admin.py'},
+                {'name': 'admin.py'}, {'name': 'querysets.py'},
             ],
             'validate': lambda answer: 'You probably forgot something ...' if len(answer) == 0 else True
         }

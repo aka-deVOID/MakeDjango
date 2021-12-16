@@ -23,12 +23,13 @@ def main() -> None:
     modes.add_argument("-c", "--custom", action="store_true", help="Custom Template")
     # other:
     other = parser.add_argument_group(title="other options:")
+    other.add_argument("-d", "--dockerize", action="store_true", help="Dockerize Project")
     other.add_argument("-p", "--path", nargs=1, default=os.getcwd(), help="project directory path")
 
     args = parser.parse_args()
 
     if vars(args)["version"] == True:
-        print("1.0.5")
+        print("1.1.0")
     else:
         Main(parser, **vars(args))
 

@@ -79,12 +79,19 @@ def choice_user_app(apps: list) -> dict:
     ]
     return prompt(questions, style=style)
 
-def custom(name: str, apps: list, framework: str, path: str) -> bool:
+def dockerize_project(path: str):
+    open(join(path, "Dockerfile"), "w").close()
+    copyfile(Base / "template/docker-compose.yaml", join(path, "docker-compose.yaml"))
+
+def custom(name: str, apps: list, framework: str, path: str, dockerize: bool) -> bool:
     header(name, apps, framework, path)
     user_app: dict = choice_user_app(apps)
     files: dict = selected_app_files()
     main_dir: str = join(path, name)
     setup_dir: str = join(main_dir, name)
+
+    if dockerize == True:
+        dockerize_project(path)
 
     try:
         mkdir(main_dir); mkdir(setup_dir)
@@ -113,4 +120,7 @@ def custom(name: str, apps: list, framework: str, path: str) -> bool:
         for _file in files["apps"]:
             copyfile(Base / join("template", _file), join(app_dir, _file))
         print(f"\33[32m==> {app.capitalize()} Craeted... \U00002705")
+
+    if dockerize == True:
+        dockerize_project(path)
     return True

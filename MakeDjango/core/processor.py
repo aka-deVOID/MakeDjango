@@ -4,8 +4,6 @@ import argparse
 from .auto_make import auto
 from .custom_make import custom
 
-__version__: str = "1.0.4"
-
 class Main:
     """Validates argparse values. It then calls the required function based on the flag (-a | -c)."""
 
@@ -17,6 +15,7 @@ class Main:
         self.path: str = kwargs["path"]
         self.framework: str = kwargs["framework"]
         self.apps: list = kwargs["appnames"]
+        self.dockerize: bool = kwargs["dockerize"]
         self.processor()
 
     def __str__(self) -> str:
@@ -65,5 +64,5 @@ class Main:
             if auto(self._name, self._apps, self.framework, self.path):
                 print("\33[32m==> Done... \U00002705")
         elif self.custom:
-            if custom(self._name, self._apps, self.framework, self.path):
+            if custom(self._name, self._apps, self.framework, self.path, self.dockerize):
                 print("\33[32m==> Done... \U00002705")

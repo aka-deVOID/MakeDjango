@@ -8,7 +8,7 @@ setup(
     name="MakeDjango",
     long_description=long_description,
     long_description_content_type='text/markdown',
-    version="1.1.0",
+    version="1.1.1",
     install_requires=[
         "setuptools",
         "wheel",
@@ -19,7 +19,7 @@ setup(
         "PyInquirer==1.0.3"
     ],
     packages=["MakeDjango"],
-    package_data={'MakeDjango': ["core/*.py", "template/*.py"]},
+    package_data={'MakeDjango': ["core/*.py", "template/*"]},
     include_package_data=True,
     zip_safe=False
 )

@@ -2,7 +2,7 @@
 import argparse
 import os
 
-from .core.processor import Main
+from core.processor import Main
 
 def main() -> None:
     parser = argparse.ArgumentParser(
@@ -17,15 +17,14 @@ def main() -> None:
     parser.add_argument("name", nargs="?", help="project name")
     parser.add_argument("framework", nargs="?", choices=("rest", "graphql", "django"), help="select your framework")
     parser.add_argument("appnames", nargs="*", help="app names create apps")
-    # modes:
-    modes = parser.add_mutually_exclusive_group(required=False)
-    modes.add_argument("-a", "--auto", action="store_true", help="Auto Template")
-    modes.add_argument("-c", "--custom", action="store_true", help="Custom Template")
     # venv:
     venv = parser.add_mutually_exclusive_group(required=False)
     venv.add_argument("--venv", action="store_true", help="Create venv")
     venv.add_argument("--pack", nargs="*", help="Package names")
-
+    # modes:
+    modes = parser.add_mutually_exclusive_group(required=False)
+    modes.add_argument("-a", "--auto", action="store_true", help="Auto Template")
+    modes.add_argument("-c", "--custom", action="store_true", help="Custom Template")
     # other:
     other = parser.add_argument_group(title="other options:")
     other.add_argument("-d", "--dockerize", action="store_true", help="Dockerize Project")
@@ -34,11 +33,9 @@ def main() -> None:
     args = parser.parse_args()
 
     if vars(args)["version"] == True:
-        print("1.1.1")
+        print("1.2.1")
     else:
         Main(parser, **vars(args))
 
 if __name__ == "__main__":
     main()
-
-# TODO: add auto .venv maker and install default package

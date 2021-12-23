@@ -4,4 +4,4 @@ python -m venv .venv
 source .venv/bin/activate
 shift
 pip install "$@"
-install --upgrade pip
+pip install --upgrade pip

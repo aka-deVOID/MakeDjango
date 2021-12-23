@@ -8,8 +8,7 @@ here = Path(__file__).resolve().parent
 def venv(path: str, packages: list[str]) -> bool:
     if sys.platform == "linux":
         str_package = " ".join(packages)
-        
-        os.system("bash %s %s %s" % (here / "linux.sh", str_package, path))
+        subprocess.call(["sh", here / "linux.sh", path] + packages)
         return True
 
     elif sys.platform == "win32":

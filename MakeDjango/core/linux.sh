@@ -1,5 +1,7 @@
 #!/bin/bash
-cd $2
+cd $1
 python -m venv .venv
 source .venv/bin/activate
-pip install $1
+shift
+pip install "$@"
+install --upgrade pip

@@ -62,12 +62,12 @@ class Main:
         self._apps = app_names
 
     def processor(self) -> None:
-        if self.venv:
-            if venv(self.path, self.packages):
-                print("\33[32m==> Done... \U00002705")
         if self.auto:
             if auto(self._name, self._apps, self.framework, self.path):
                 print("\33[32m==> Done... \U00002705")
         elif self.custom:
             if custom(self._name, self._apps, self.framework, self.path, self.dockerize):
                 print("\33[32m==> Done... \U00002705")
+        if self.venv:
+            if venv(self.path, self.packages):
+                print("\33[32m==> FINISH... \U00002705")

@@ -8,7 +8,7 @@ setup(
     name="MakeDjango",
     long_description=long_description,
     long_description_content_type='text/markdown',
-    version="1.2.3",
+    version="1.2.4",
     install_requires=[
         "setuptools",
         "wheel",

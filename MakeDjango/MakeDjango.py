@@ -31,7 +31,7 @@ def main() -> None:
     args = parser.parse_args()
 
     if vars(args)["version"] == True:
-        print("1.2.1")
+        print("1.2.2")
     else:
         Main(parser, **vars(args))
 

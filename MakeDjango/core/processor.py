@@ -17,7 +17,7 @@ class Main:
         self.framework: str = kwargs["framework"]
         self.apps: list = kwargs["appnames"]
         self.dockerize: bool = kwargs["dockerize"]
-        self.venv: bool = kwargs["venv"]; self.packages: list = kwargs["packages"]
+        self.venv: bool = kwargs["venv"]; self.packages: list = kwargs["pack"]
         self.processor()
 
     def __str__(self) -> str:

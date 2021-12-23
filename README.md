@@ -8,7 +8,7 @@
 
 - Document: Soon
 - Pypi: [HERE](https://pypi.org/project/MakeDjango/)
-- Version: 1.2.2
+- Version: 1.2.3
 
 ## What is MakeDjango?
 

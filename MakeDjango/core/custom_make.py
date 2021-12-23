@@ -45,6 +45,7 @@ def selected_app_files() -> dict:
                 {'name': 'views.py'}, {'name': 'throttles.py'},
                 {'name': 'serializers.py'}, {'name': 'schema.py'},
                 {'name': 'models.py'}, {'name': 'querysets.py'},
+                {'name': 'consumers.py'}, {'name': 'routers.py'},
             ],
             'validate': lambda answer: 'You probably forgot something ...' if len(answer) == 0 else True
         },
@@ -62,6 +63,7 @@ def selected_app_files() -> dict:
                 {'name': 'middlewares.py'}, {'name': 'schema.py'},
                 {'name': 'throttles.py'}, {'name': 'serializers.py'},
                 {'name': 'admin.py'}, {'name': 'querysets.py'},
+                {'name': 'consumers.py'}, {'name': 'routers.py'},
             ],
             'validate': lambda answer: 'You probably forgot something ...' if len(answer) == 0 else True
         }

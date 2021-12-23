@@ -3,6 +3,7 @@ import re
 import argparse
 from .auto_make import auto
 from .custom_make import custom
+from .venv_make import venv
 
 class Main:
     """Validates argparse values. It then calls the required function based on the flag (-a | -c)."""
@@ -16,6 +17,7 @@ class Main:
         self.framework: str = kwargs["framework"]
         self.apps: list = kwargs["appnames"]
         self.dockerize: bool = kwargs["dockerize"]
+        self.venv: bool = kwargs["venv"]; self.packages: list = kwargs["packages"]
         self.processor()
 
     def __str__(self) -> str:
@@ -60,6 +62,9 @@ class Main:
         self._apps = app_names
 
     def processor(self) -> None:
+        if self.venv:
+            if venv(self.path, self.packages):
+                print("\33[32m==> Done... \U00002705")
         if self.auto:
             if auto(self._name, self._apps, self.framework, self.path):
                 print("\33[32m==> Done... \U00002705")

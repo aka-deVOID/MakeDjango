@@ -247,4 +247,5 @@ pip-selfcheck.json
 main
 .pypirc
 TODO.txt
+test/
 # End of https://www.toptal.com/developers/gitignore/api/venv,django,python,visualstudiocode

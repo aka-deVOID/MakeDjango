@@ -21,6 +21,11 @@ def main() -> None:
     modes = parser.add_mutually_exclusive_group(required=False)
     modes.add_argument("-a", "--auto", action="store_true", help="Auto Template")
     modes.add_argument("-c", "--custom", action="store_true", help="Custom Template")
+    # venv:
+    venv = parser.add_mutually_exclusive_group(required=False)
+    venv.add_argument("--venv", action="store_true", help="Create venv")
+    venv.add_argument("--pack", nargs="*", help="Package names")
+
     # other:
     other = parser.add_argument_group(title="other options:")
     other.add_argument("-d", "--dockerize", action="store_true", help="Dockerize Project")
@@ -36,5 +41,4 @@ def main() -> None:
 if __name__ == "__main__":
     main()
 
-# TODO: add Dockerize command
 # TODO: add auto .venv maker and install default package

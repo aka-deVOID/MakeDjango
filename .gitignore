@@ -248,4 +248,5 @@ main
 .pypirc
 TODO.txt
 test/
+.idea
 # End of https://www.toptal.com/developers/gitignore/api/venv,django,python,visualstudiocode

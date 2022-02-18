@@ -17,18 +17,20 @@ style = style_from_dict({
     Token.Question: '#c90076',
 })
 
+
 def header(name: str, apps: list, framework: str, path: str) -> None:
-    text_seting = Figlet(font='doom')
-    print(f"\33[32m{text_seting.renderText('MakeDjango')}")
-    print("_"*55)
+    text_setting = Figlet(font='doom')
+    print(f"\33[32m{text_setting.renderText('MakeDjango')}")
+    print("_" * 55)
     print(f"Project Name: \'{name}\'")
-    print(f"Apps: {[ i for i in apps]}")
+    print(f"Apps: {[i for i in apps]}")
     print(f"Mode: \'{framework}\'")
     if os.getcwd() == path:
         print("Path: \'./here\'")
     else:
         print(f"Path: \'{path}\'")
-    print("_"*55)
+    print("_" * 55)
+
 
 def selected_app_files() -> dict:
     questions = [
@@ -70,6 +72,7 @@ def selected_app_files() -> dict:
     ]
     return prompt(questions, style=style)
 
+
 def choice_user_app(apps: list) -> dict:
     questions = [
         {
@@ -81,9 +84,11 @@ def choice_user_app(apps: list) -> dict:
     ]
     return prompt(questions, style=style)
 
+
 def dockerize_project(path: str):
     open(join(path, "Dockerfile"), "w").close()
     copyfile(Base / "template/docker-compose.yaml", join(path, "docker-compose.yaml"))
+
 
 def custom(name: str, apps: list, framework: str, path: str, dockerize: bool) -> bool:
     header(name, apps, framework, path)
@@ -92,11 +97,12 @@ def custom(name: str, apps: list, framework: str, path: str, dockerize: bool) ->
     main_dir: str = join(path, name)
     setup_dir: str = join(main_dir, name)
 
-    if dockerize == True:
+    if dockerize:
         dockerize_project(path)
 
     try:
-        mkdir(main_dir); mkdir(setup_dir)
+        mkdir(main_dir)
+        mkdir(setup_dir)
     except FileExistsError:
         sys.exit("MakeDjango: There is a folder with the project name.")
 
@@ -108,21 +114,24 @@ def custom(name: str, apps: list, framework: str, path: str, dockerize: bool) ->
     print("\33[32m==> Project Created... \U00002705")
 
     for app in apps:
-        app_dir = join(main_dir, app); mkdir(app_dir)
-        migrations_dir = join(app_dir, "migrations"); mkdir(migrations_dir); copyfile(Base / "template/__init__.py", join(migrations_dir, "__init__.py"))
+        app_dir = join(main_dir, app)
+        mkdir(app_dir)
+        migrations_dir = join(app_dir, "migrations")
+        mkdir(migrations_dir)
+        copyfile(Base / "template/__init__.py", join(migrations_dir, "__init__.py"))
         if app == user_app["user"]:
             create_apps(app_dir, app)
             for _file in files["user"]:
                 copyfile(Base / join("template/", _file), join(app_dir, _file))
-            
-            print(f"\33[32m==> {app.capitalize()} Craeted... \U00002705")
+
+            print(f"\33[32m==> {app.capitalize()} Created... \U00002705")
             continue
 
         create_apps(app_dir, app)
         for _file in files["apps"]:
             copyfile(Base / join("template", _file), join(app_dir, _file))
-        print(f"\33[32m==> {app.capitalize()} Craeted... \U00002705")
+        print(f"\33[32m==> {app.capitalize()} Created... \U00002705")
 
-    if dockerize == True:
+    if dockerize:
         dockerize_project(path)
     return True

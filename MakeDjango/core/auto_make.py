@@ -55,8 +55,9 @@ Graqhql_Files: tuple = (
     "template/schema.py",
     "template/tests.py",
     "template/urls.py",
-    "template/views.py", 
+    "template/views.py",
 )
+
 
 def create_apps(app_dir: str, app_name: str) -> None:
     """Creates the apps.py file."""
@@ -68,71 +69,87 @@ class {app_name.capitalize()}Config(AppConfig):
     name = '{app_name}'
 
     """
-    apps_file = open(join(app_dir, "apps.py"), 'w'); apps_file.write(code); apps_file.close()
+    apps_file = open(join(app_dir, "apps.py"), 'w')
+    apps_file.write(code)
+    apps_file.close()
+
 
 def rest(apps: list, main_dir: str) -> bool:
     """Creating App Files For Rest mode"""
     for app in apps:
-        app_dir = join(main_dir, app); mkdir(app_dir)
-        migrations_dir = join(app_dir, "migrations"); mkdir(migrations_dir); copyfile(Base / "template/__init__.py", join(migrations_dir, "__init__.py"))
-    
+        app_dir = join(main_dir, app)
+        mkdir(app_dir)
+        migrations_dir = join(app_dir, "migrations")
+        mkdir(migrations_dir)
+        copyfile(Base / "template/__init__.py", join(migrations_dir, "__init__.py"))
+
         if app in ("user", "account", "accounts"):
             create_apps(app_dir, app)
             for user_file in User_Files:
                 copyfile(Base / user_file, join(app_dir, user_file[9:]))
-            
-            print(f"\33[32m==> {app.capitalize()} Craeted... \U00002705")
+
+            print(f"\33[32m==> {app.capitalize()} Created... \U00002705")
             continue
-        
+
         create_apps(app_dir, app)
         for rest_file in Rest_Files:
             copyfile(Base / rest_file, join(app_dir, rest_file[9:]))
-    
-        print(f"\33[32m==> {app.capitalize()} Craeted... \U00002705")
+
+        print(f"\33[32m==> {app.capitalize()} Created... \U00002705")
     return True
+
 
 def django(apps: list, main_dir: str) -> bool:
     """Creating App Files For Django(Jinja2) mode"""
     for app in apps:
-        app_dir = join(main_dir, app); mkdir(app_dir)
-        migrations_dir = join(app_dir, "migrations"); mkdir(migrations_dir); copyfile(Base / "template/__init__.py", join(migrations_dir, "__init__.py"))
+        app_dir = join(main_dir, app)
+        mkdir(app_dir)
+        migrations_dir = join(app_dir, "migrations")
+        mkdir(migrations_dir)
+        copyfile(Base / "template/__init__.py", join(migrations_dir, "__init__.py"))
 
         if app in ("user", "account", "accounts"):
             create_apps(app_dir, app)
             for user_file in User_Files:
                 copyfile(Base / user_file, join(app_dir, user_file[9:]))
 
-            print(f"\33[32m==> {app.capitalize()} Craeted... \U00002705")
+            print(f"\33[32m==> {app.capitalize()} Created... \U00002705")
             continue
 
-        mkdir(join(app_dir, f"templates")); mkdir(join(app_dir + "/templates", app))
+        mkdir(join(app_dir, f"templates"))
+        mkdir(join(app_dir + "/templates", app))
         create_apps(app_dir, app)
         for django_file in Django_Files:
             copyfile(Base / django_file, join(app_dir, django_file[9:]))
 
-        print(f"\33[32m==> {app.capitalize()} Craeted... \U00002705")
+        print(f"\33[32m==> {app.capitalize()} Created... \U00002705")
     return True
+
 
 def graphql(apps: list, main_dir: str) -> bool:
     """Creating App Files For GraphQL mode"""
     for app in apps:
-        app_dir = join(main_dir, app); mkdir(app_dir)
-        migrations_dir = join(app_dir, "migrations"); mkdir(migrations_dir); copyfile(Base / "template/__init__.py", join(migrations_dir, "__init__.py"))
-    
+        app_dir = join(main_dir, app)
+        mkdir(app_dir)
+        migrations_dir = join(app_dir, "migrations")
+        mkdir(migrations_dir)
+        copyfile(Base / "template/__init__.py", join(migrations_dir, "__init__.py"))
+
         if app in ("user", "account", "accounts"):
             create_apps(app_dir, app)
             for user_file in User_Files:
                 copyfile(Base / user_file, join(app_dir, user_file[9:]))
-            
-            print(f"\33[32m==> {app.capitalize()} Craeted... \U00002705")
+
+            print(f"\33[32m==> {app.capitalize()} Created... \U00002705")
             continue
-        
+
         create_apps(app_dir, app)
         for graphql_file in Graqhql_Files:
             copyfile(Base / graphql_file, join(app_dir, graphql_file[9:]))
-    
-        print(f"\33[32m==> {app.capitalize()} Craeted... \U00002705")
+
+        print(f"\33[32m==> {app.capitalize()} Created... \U00002705")
     return True
+
 
 def auto(project_name: str, apps: list, framework: str, path: str) -> bool:
     """
@@ -143,7 +160,8 @@ def auto(project_name: str, apps: list, framework: str, path: str) -> bool:
     setup_dir: str = join(main_dir, project_name)
 
     try:
-        mkdir(main_dir); mkdir(setup_dir)
+        mkdir(main_dir)
+        mkdir(setup_dir)
     except FileExistsError:
         sys.exit("DST: " + "There is a folder with the project name")
 

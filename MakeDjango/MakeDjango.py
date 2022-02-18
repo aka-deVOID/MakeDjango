@@ -4,13 +4,14 @@ import os
 
 from .core.processor import Main
 
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         prog="Make Django",
         description="Quick creation of Django project template",
         epilog="Good Luck...",
     )
-    
+
     # optional arguments:
     parser.add_argument("-v", "--version", action="store_true", help="package version")
     parser.add_argument("--venv", action="store_true", help="Create venv")
@@ -30,10 +31,11 @@ def main() -> None:
 
     args = parser.parse_args()
 
-    if vars(args)["version"] == True:
+    if vars(args)["version"]:
         print("1.2.6")
     else:
         Main(parser, **vars(args))
+
 
 if __name__ == "__main__":
     main()

@@ -5,19 +5,22 @@ from .auto_make import auto
 from .custom_make import custom
 from .venv_make import venv
 
+
 class Main:
     """Validates argparse values. It then calls the required function based on the flag (-a | -c)."""
 
     def __init__(self, parser, **kwargs) -> None:
         self.parser: isinstance(argparse) = parser
         self.version: str = kwargs["version"]
-        self.auto: bool = kwargs["auto"]; self.custom: bool = kwargs["custom"]
+        self.auto: bool = kwargs["auto"]
+        self.custom: bool = kwargs["custom"]
         self.name: str = kwargs["name"]
         self.path: str = kwargs["path"]
         self.framework: str = kwargs["framework"]
         self.apps: list = kwargs["appnames"]
         self.dockerize: bool = kwargs["dockerize"]
-        self.venv: bool = kwargs["venv"]; self.packages: list = kwargs["pack"]
+        self.venv: bool = kwargs["venv"]
+        self.packages: list = kwargs["pack"]
         self.processor()
 
     def __str__(self) -> str:
@@ -25,15 +28,15 @@ class Main:
 
     def __repr__(self) -> str:
         return f"{__class__}"
-    
+
     @property
-    def name(self) -> str:
+    def name(self):
         self._name
 
     @property
     def path(self) -> str:
         return self._path
-            
+
     @property
     def apps(self) -> str:
         return self._apps
@@ -44,7 +47,7 @@ class Main:
             self._path = path_addr
         else:
             self.parser.error("The entered path is invalid")
-    
+
     @name.setter
     def name(self, project_name: str) -> None:
         regex = re.compile(r'([A-Za-z0-9\_])*')

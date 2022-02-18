@@ -5,6 +5,7 @@ from pathlib import Path
 
 here = Path(__file__).resolve().parent
 
+
 def venv(path: str, packages: list[str]) -> bool:
     if sys.platform == "linux":
         str_package = " ".join(packages)

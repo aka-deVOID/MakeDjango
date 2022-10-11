@@ -3,4 +3,5 @@ requires = [
     "setuptools>=42",
     "wheel"
 ]
+readme = "README.md"
 build-backend = "setuptools.build_meta"

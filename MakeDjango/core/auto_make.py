@@ -4,7 +4,7 @@ from os import mkdir
 from os.path import join
 from shutil import copyfile
 
-Base: str = Path(__file__).resolve().parent.parent
+Base: Path = Path(__file__).resolve().parent.parent
 
 Setup_Files: tuple = (
     "template/__init__.py",
